@@ -1,6 +1,8 @@
-S = sum | mul | int;
+S = sum | mul | sub | int | div;
 digit = '0'-'9';
 int = digit + $S{ArInt(s2i($S))};
 ws = (' ' | '\t' | '\n' | '\r')*;  
 sum = "(" ws S:l ws "+" ws S:r ws ")" {ArSum(:l, :r)};
 mul = "(" ws S:l ws "*" ws S:r ws ")" {ArMult(:l, :r)};
+div = "(" ws S:l ws "/" ws S:r ws ")" {ArDiv(:l, :r)};
+sub = "(" ws S:l ws "-" ws S:r ws ")" {ArSub(:l, :r)};
