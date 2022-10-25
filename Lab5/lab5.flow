@@ -35,7 +35,10 @@ calculator(e : ArExpr) -> int{
 			calculator(lhs) - calculator(rhs);
 		}
 		ArDiv(lhs, rhs): {
-			calculator(lhs) / calculator(rhs);
+		right_part = calculator(rhs);
+		left_part = calculator(lhs);
+		assert(right_part != 0, "Division by zero");
+		left_part / right_part;
 		}
 	}	
 }
