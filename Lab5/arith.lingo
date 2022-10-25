@@ -1,0 +1,6 @@
+S = sum | mul | int;
+digit = '0'-'9';
+int = digit + $S{ArInt(s2i($S))};
+ws = (' ' | '\t' | '\n' | '\r')*;  
+sum = "(" ws S:l ws "+" ws S:r ws ")" {ArSum(:l, :r)};
+mul = "(" ws S:l ws "*" ws S:r ws ")" {ArMult(:l, :r)};
