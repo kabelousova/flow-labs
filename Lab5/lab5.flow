@@ -1,1 +1,56 @@
+import runtime;
+import ds/tree;
+import lingo/pegcode/driver;
+import string;
 
+ArExpr ::= ArSum, ArMult, ArInt;
+        ArSum (lhs : ArExpr, rhs: ArExpr);
+        ArMult (lhs : ArExpr, rhs: ArExpr);
+        ArInt (val : int);
+
+s2ar(str: string) -> ArExpr {
+	e_gr = "#include arith.lingo";
+	parsic(
+		compilePegGrammar(e_gr),
+		str,
+		SemanticActions(setTree(defaultPegActions.t, 
+			"createArInt", \s -> ArInt(s2i(s[0]))))
+	);
+}
+
+calculator(e : ArExpr) -> int{
+	switch(e){
+		ArSum(lhs, rhs): {
+			calculator(lhs) + calculator(rhs);
+		}
+		ArMult(lhs, rhs): {
+			calculator(lhs) * calculator(rhs);
+		}
+		ArInt(val): {
+			val;
+		}
+	}	
+}
+
+ar2s(e: ArExpr) -> string {
+    switch(e){
+        ArSum(lhs, rhs): {
+		"(" + ar2s(lhs) + "+" + ar2s(rhs) + ")";
+	}
+        ArMult(lhs, rhs): {
+		"(" + ar2s(lhs) + "*" + ar2s(rhs) + ")";
+	}
+        ArInt(val) : {
+		i2s(val);
+	}
+    }
+}
+
+main() {
+	x = "(((10 + 3) * (8 * 2)) + 1)"; 
+	
+	expr = s2ar(x);
+	println(expr);
+	println(ar2s(expr));
+	println(calculator(expr));
+}
