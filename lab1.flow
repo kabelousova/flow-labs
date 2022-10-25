@@ -1,0 +1,16 @@
+//Реализовать функцию, которая преобразует массив целых чисел в массив строк,
+// например: [1, 2, 3] в ["1", "2", "3"]. Вывести массив на экран.
+// Использовать функции: map, i2s, strGlue, println.
+
+import runtime;
+import string;
+
+function(mas : [int]) -> [string] //функция которая переводит массив чисел в массив строк
+{
+    map(mas, i2s); //map applies a function to each element of an array to give a new array with the results
+} 
+
+main() {
+    mas = [1, 2, 3];
+    println(strGlue(function(mas), ", "));
+}

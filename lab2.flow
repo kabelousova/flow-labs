@@ -1,0 +1,9 @@
+//Реализовать функцию, которая вычисляет сумму элементов заданного массива, 
+//например: для [1, 2, 3] вернуть 6. 
+//Использовать функцию fold.
+import runtime;
+
+main() {
+    array : [int] = [1,2,3]; //массивы всегда неизменяемые
+    println(fold(array,0,\x,y -> x+y)); //another common operation is to reduce an array to a value, also called folding.
+}
