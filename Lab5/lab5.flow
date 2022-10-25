@@ -47,7 +47,7 @@ ar2s(e: ArExpr) -> string {
 }
 
 main() {
-	x = "(((3+11)*2 - (10/5))"; 
+	x = "(((3 + 11) * 2 - (10 / 5))"; 
 	
 	expr = s2ar(x);
 	println(expr);
